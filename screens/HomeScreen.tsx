@@ -9,8 +9,10 @@ import React from "react";
 import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
 import ActionRow from "../components/ActionRow";
+import useRevenueCat from "../hooks/useRevenueCat";
 
 export default function HomeScreen() {
+  const { currentOffering, isProMember, customerInfo } = useRevenueCat();
   return (
     <SafeAreaView
       style={{
