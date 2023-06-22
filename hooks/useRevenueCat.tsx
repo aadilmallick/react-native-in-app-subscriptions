@@ -7,8 +7,9 @@ import Purchases, {
   PurchasesOffering,
 } from "react-native-purchases";
 
+// go to your offerings in revenue cat and get the id of the monthly subscription product
 const typesOfMembership = {
-  monthly: "payme",
+  monthly: "payme1:payme-monthly",
 };
 
 const apiKeys = {
@@ -21,11 +22,12 @@ export default function useRevenueCat() {
     useState<PurchasesOffering | null>(null);
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo | null>(null);
 
-  const isProMember = customerInfo?.activeSubscriptions.includes(
-    typesOfMembership["monthly"]
-  );
+  // look at the list of active subscriptions and see if the user has a monthly subscription
+  // const isProMember = customerInfo?.activeSubscriptions.includes(
+  //   typesOfMembership.monthly
+  // );
+  const isProMember = customerInfo?.entitlements.active.pro.isActive;
 
-  // console.warn(currentOffering);
   useEffect(() => {
     async function initPurchases() {
       Purchases.setLogLevel(LOG_LEVEL.DEBUG);

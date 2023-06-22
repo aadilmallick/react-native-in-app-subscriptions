@@ -10,9 +10,20 @@ import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
 import ActionRow from "../components/ActionRow";
 import useRevenueCat from "../hooks/useRevenueCat";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../App";
+import { useNavigation } from "@react-navigation/native";
+
+export type NavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Home"
+>;
 
 export default function HomeScreen() {
   const { currentOffering, isProMember, customerInfo } = useRevenueCat();
+  // console.log(JSON.stringify(currentOffering));
+  const navigation = useNavigation<NavigationProp>();
+
   return (
     <SafeAreaView
       style={{
@@ -26,9 +37,16 @@ export default function HomeScreen() {
         style={{
           top: Constants.statusBarHeight,
         }}
+        onPress={() =>
+          isProMember
+            ? navigation.navigate("DemoScreen")
+            : navigation.navigate("Paywall")
+        }
       >
         <Ionicons name="person-circle" size={30} color="#E5962D" />
-        <Text className="text-black uppercase">Pro/Upgrade</Text>
+        <Text className="text-black uppercase">
+          {isProMember ? "PRO" : "upgrade"}
+        </Text>
       </TouchableOpacity>
       {/* image */}
       <Image

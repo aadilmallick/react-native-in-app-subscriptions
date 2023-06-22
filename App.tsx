@@ -3,11 +3,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./screens/HomeScreen";
 import DemoScreen from "./screens/DemoScreen";
 import PaywallScreen from "./screens/PaywallScreen";
+import SubscriptionInfoScreen from "./screens/SubscriptionInfoScreen";
 
 export type RootStackParamList = {
   Home: undefined;
   Paywall: undefined;
   DemoScreen: undefined;
+  Subscription: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -37,6 +39,7 @@ export default function App() {
             presentation: "transparentModal",
           }}
         />
+        <Stack.Screen name="Subscription" component={SubscriptionInfoScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
