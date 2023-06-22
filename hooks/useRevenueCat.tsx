@@ -26,7 +26,9 @@ export default function useRevenueCat() {
   // const isProMember = customerInfo?.activeSubscriptions.includes(
   //   typesOfMembership.monthly
   // );
-  const isProMember = customerInfo?.entitlements.active.pro.isActive;
+
+  // check the entitlements to see if the user has the pro membership
+  const isProMember = customerInfo?.entitlements?.active?.pro?.isActive;
 
   useEffect(() => {
     async function initPurchases() {
